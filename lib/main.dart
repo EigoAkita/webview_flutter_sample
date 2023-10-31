@@ -35,7 +35,6 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   late WebViewController _webViewController;
-  final _cookieManager = CookieManager();
 
   Map<String, String> parseCookies(String cookieString) {
     Map<String, String> cookies = {};

@@ -35,6 +35,7 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   late WebViewController _webViewController;
+  final _cookieManager = CookieManager();
 
   Map<String, String> parseCookies(String cookieString) {
     Map<String, String> cookies = {};
@@ -60,18 +61,21 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () async {
+          // await _cookieManager.clearCookies();
           final cookies = await _webViewController.runJavascriptReturningResult(
             'document.cookie',
           );
 
           logger.info("🍫🍪$cookies");
 
-          final Map<String, dynamic> _parseCookies = parseCookies(cookies);
-          // cookies表示
-          _parseCookies.forEach((key, value) {
-            logger.info("🍪key => $key");
-            logger.info("🍪value => $value");
-          });
+          if (cookies.replaceAll('"', '').isNotEmpty) {
+            final Map<String, dynamic> _parseCookies = parseCookies(cookies);
+            // cookies表示
+            _parseCookies.forEach((key, value) {
+              logger.info("🍪key => $key");
+              logger.info("🍪value => $value");
+            });
+          }
         },
         child: const Icon(Icons.web_outlined),
       ),

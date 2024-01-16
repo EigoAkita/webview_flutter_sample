@@ -3,6 +3,7 @@ import 'package:get/instance_manager.dart';
 import 'package:get/route_manager.dart';
 import 'package:simple_logger/simple_logger.dart';
 import 'package:webview_flutter_sample/flutter_inappwebview.dart';
+import 'package:webview_flutter_sample/webview_flutter.dart';
 import 'package:webview_flutter_sample/widgets/common.dart';
 
 void main() {
@@ -51,7 +52,9 @@ class _MyHomePageState extends State<MyHomePage> {
                   text: 'FlutterInAppWebView',
                   onPressed: () => Get.to(() => FlutterInAppWebView())),
               Container(height: 15),
-              BlackOutLineButton(text: 'WebViewFlutter', onPressed: () {}),
+              BlackOutLineButton(
+                  text: 'WebViewFlutter',
+                  onPressed: () => Get.to(() => WebViewFlutter())),
             ],
           ),
         ),
